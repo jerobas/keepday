@@ -26,7 +26,7 @@ public class KeepDay extends JavaPlugin {
             public void run() {
                 for (World world : Bukkit.getWorlds()) {
                    long time = world.getTime();
-                    if (time >= 7200 && time <= 13000) {
+                    if (time >= 13000  && time <= 13002) {
                         world.setTime(0);
                     }
                 }
