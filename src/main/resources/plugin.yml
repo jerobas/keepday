@@ -1,0 +1,12 @@
+name: KeepDay
+main: com.flaviozno.keepday.KeepDay
+version: 1.0
+api-version: 1.20
+commands:
+  keepdaytoggle:
+    description: Toggle day progress messages
+    usage: /keepdaytoggle
+    permission: keepday.toggle
+permissions:
+  keepday.toggle:
+    default: op

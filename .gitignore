@@ -1,0 +1,4 @@
+/build
+/.gradle
+!/build/libs/*.jar
+build.gradle

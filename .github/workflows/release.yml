@@ -1,0 +1,26 @@
+name: Release Plugin
+
+on:
+    push:
+        branches:
+            - main
+
+jobs: 
+    release:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Push tag and create GitHub Release with JAR
+              run: |
+                git config user.name "github-actions[bot]"
+                git config user.email "github-actions[bot]@users.noreply.github.com"
+                git pull --rebase origin main
+                git push --follow-tags origin main
+                tag=$(git describe --tags)
+                gh release create "$tag" --generate-notes build/libs/*.jar
+              env:
+               GH_TOKEN: ${{ secrets.GH_TOKEN }}
+              shell: bash
