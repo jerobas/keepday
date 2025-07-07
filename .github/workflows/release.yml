@@ -19,7 +19,7 @@ jobs:
 
             - name: Create GitHub Release with JAR
               run: |
-                version=$(grep "^version:" plugin.yml | awk '{print $2}')
+                version=$(grep "^version:" src/main/resources/plugin.yml | awk '{print $2}')
                 tag="v$version"
                 name="KeepDay v$version"
 
