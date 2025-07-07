@@ -23,10 +23,11 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
+
       - name: Build plugin with Gradle
-        run: |
-          chmod +x gradlew
-          ./gradlew build
+        run: gradle build
 
       - name: Create GitHub Release with JAR
         run: |
