@@ -6,6 +6,10 @@ on:
             - main
 
 jobs: 
+    use-template:
+      uses: jerobas/.github/.github/workflows/update-readme.yml@main
+      secrets: inherit
+     
     release:
         runs-on: ubuntu-latest
 
@@ -13,13 +17,9 @@ jobs:
             - name: Checkout repository
               uses: actions/checkout@v4
 
-            - name: Push tag and create GitHub Release with JAR
+            - name: Create GitHub Release with JAR
               run: |
-                git config user.name "github-actions[bot]"
-                git config user.email "github-actions[bot]@users.noreply.github.com"
-                git pull --rebase origin main
-                git push --follow-tags origin main
-                tag=$(git describe --tags)
+                tag=$(git describe --tags --abbrev=0)
                 gh release create "$tag" --generate-notes build/libs/*.jar
               env:
                GH_TOKEN: ${{ secrets.GH_TOKEN }}
