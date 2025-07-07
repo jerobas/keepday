@@ -23,9 +23,6 @@ jobs:
                 tag="v$version"
                 name="KeepDay v$version"
 
-                git tag "$tag"
-                git push origin "$tag"
-
                 gh release create "$tag" --title "$name" --notes "Release $name" build/libs/*.jar
               env:
                 GH_TOKEN: ${{ secrets.GH_TOKEN }}
